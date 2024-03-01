@@ -125,14 +125,14 @@ class MetricsLogger(TensorBoardLogger):
             elapsed_time = metrics["validation_step_timing"]
             log_string = ' Step {}/{}: |'.format(step, self.trainer.num_val_batches)
             log_string += ' validation_step_timing {:.2f}: |'.format(metrics["validation_step_timing"])
-        elif "train_step_timing" in metrics:
-            elapsed_time = metrics["train_step_timing"]
+        elif "train_step_timing in s" in metrics:
+            elapsed_time = metrics["train_step_timing in s"]
             total_iterations = metrics["global_step"]
             samples_per_sec, tflops, approx_parameters_in_billions = throughput_calculator(self.model, self.cfg, elapsed_time, total_iterations)
             tokens_per_sec = samples_per_sec * self.cfg.model.data.seq_length
 
             log_string = ' Epoch {}: iteration {}/{} |'.format(metrics["epoch"], self.trainer.global_step, self.trainer.max_steps)
-            log_string += ' train_step_timing (s): {:.2f} |'.format(metrics["train_step_timing"])
+            log_string += ' train_step_timing (s): {:.2f} |'.format(metrics["train_step_timing in s"])
             # log_string += ' global_step: {} |'.format(metrics["global_step"])
             log_string += ' reduced_train_loss: {:.2f} |'.format(metrics["reduced_train_loss"])
             log_string += ' lr: {:.3E} |'.format(metrics["lr"])
