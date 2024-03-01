@@ -103,7 +103,7 @@ def throughput_calculator(model, cfg, iteration_time, total_iterations):
 
 # ref: https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.loggers.logger.html#lightning.pytorch.loggers.logger.Logger
 
-class MetricsLogger(TensorBoardLogger):
+class MetricsLogger(Logger):
     def __init__(self, trainer, model, cfg,
                  train_loss_key='reduced_train_loss', val_loss_key='val_loss',
                  timing_keys=('train_step_timing', 'train_epoch_timing', 'validation_step_timing', 'validation_epoch_timing'),
